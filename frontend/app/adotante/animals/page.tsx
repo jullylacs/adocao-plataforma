@@ -353,20 +353,23 @@ export default function AnimalsPage() {
         </button>
       </div>
 
-      <div className="text-center mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Animais para Adoção</h1>
-        <p className="text-gray-600 mb-4">Encontre seu novo melhor amigo</p>
-        
-        <div className="flex flex-wrap justify-center gap-4 mb-6">
-          <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg">
-            <span className="font-bold text-lg">{availableAnimals.length}</span> disponíveis
+      <div className="mb-8">
+        <h1 className="text-3xl font-extrabold text-gray-800 mb-1">Animais para Adoção</h1>
+        <p className="text-gray-500 text-sm mb-5">Encontre seu novo melhor amigo</p>
+
+        <div className="flex flex-wrap gap-3">
+          <div className="flex items-center gap-2 bg-white border rounded-xl px-4 py-2 shadow-sm">
+            <span className="text-green-500 font-bold text-lg">{availableAnimals.length}</span>
+            <span className="text-sm text-gray-600">disponíveis</span>
           </div>
-          <div className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg">
-            <span className="font-bold text-lg">{allAnimals.length - availableAnimals.length}</span> já adotados/reservados
+          <div className="flex items-center gap-2 bg-white border rounded-xl px-4 py-2 shadow-sm">
+            <span className="text-gray-600 font-bold text-lg">{allAnimals.length - availableAnimals.length}</span>
+            <span className="text-sm text-gray-600">adotados/reservados</span>
           </div>
           {interestedCount > 0 && (
-            <div className="bg-green-50 text-green-700 px-4 py-2 rounded-lg">
-              <span className="font-bold text-lg">{interestedCount}</span> interesses
+            <div className="flex items-center gap-2 bg-white border border-[#419DB0]/30 rounded-xl px-4 py-2 shadow-sm">
+              <span className="text-[#419DB0] font-bold text-lg">{interestedCount}</span>
+              <span className="text-sm text-gray-600">interesses meus</span>
             </div>
           )}
         </div>
@@ -436,8 +439,8 @@ export default function AnimalsPage() {
             {displayAnimals.map((animal) => (
               <div
                 key={animal.id}
-                className={`bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border flex flex-col ${
-                  animal.status !== "available" ? "opacity-75" : ""
+                className={`bg-white rounded-2xl shadow-sm border overflow-hidden hover:shadow-lg transition-all duration-200 hover:-translate-y-1 flex flex-col ${
+                  animal.status !== "available" ? "opacity-70" : ""
                 }`}
               >
                 <div className="relative h-48 bg-gray-100">

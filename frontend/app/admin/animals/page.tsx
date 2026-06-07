@@ -277,58 +277,55 @@ export default function AnimalsPage() {
         </div>
       </div>
 
-      {/* 🔥 ESTATÍSTICAS RÁPIDAS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <p className="text-sm text-blue-600 font-medium">Total de Animais</p>
-          <p className="text-2xl font-bold text-blue-700">{animals.length}</p>
+      {/* Estatísticas */}
+      <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="bg-white border rounded-xl p-4 shadow-sm flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-xl">🐾</div>
+          <div>
+            <p className="text-xs text-gray-500 font-medium">Total</p>
+            <p className="text-2xl font-bold text-gray-800">{animals.length}</p>
+          </div>
         </div>
-        <div className="bg-green-50 p-4 rounded-lg">
-          <p className="text-sm text-green-600 font-medium">Disponíveis</p>
-          <p className="text-2xl font-bold text-green-700">
-            {animals.filter(a => a.status === "available").length}
-          </p>
+        <div className="bg-white border rounded-xl p-4 shadow-sm flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center text-xl">✅</div>
+          <div>
+            <p className="text-xs text-gray-500 font-medium">Disponíveis</p>
+            <p className="text-2xl font-bold text-green-700">{animals.filter(a => a.status === "available").length}</p>
+          </div>
         </div>
-        <div className="bg-yellow-50 p-4 rounded-lg">
-          <p className="text-sm text-yellow-600 font-medium">Reservados/Adotados</p>
-          <p className="text-2xl font-bold text-yellow-700">
-            {animals.filter(a => a.status !== "available").length}
-          </p>
+        <div className="bg-white border rounded-xl p-4 shadow-sm flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg bg-yellow-50 flex items-center justify-center text-xl">🏠</div>
+          <div>
+            <p className="text-xs text-gray-500 font-medium">Reservados/Adotados</p>
+            <p className="text-2xl font-bold text-yellow-700">{animals.filter(a => a.status !== "available").length}</p>
+          </div>
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-5">
         {animals.map((animal) => (
           <Link
             key={animal.id}
             href={`/admin/animals/${animal.id}`}
-            className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition hover:-translate-y-1 duration-300"
+            className="group bg-white shadow rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-200 hover:-translate-y-1 border border-gray-100"
           >
             <div className="relative">
               <img
                 src={animal.mainPhotoUrl ?? "/placeholder.jpg"}
                 alt={animal.name}
                 className="w-full h-48 object-cover"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/placeholder.jpg";
-                }}
+                onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.jpg"; }}
               />
-              <span className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-semibold ${getStatusColor(animal.status)}`}>
+              <span className={`absolute top-3 right-3 px-2 py-0.5 rounded-full text-xs font-semibold ${getStatusColor(animal.status)}`}>
                 {getStatusText(animal.status)}
               </span>
             </div>
             <div className="p-4">
-              <h2 className="text-lg font-bold text-gray-800 mb-2">
-                {animal.name}
-              </h2>
-              <div className="flex justify-between items-center">
-                <p className="text-gray-500 text-sm">
-                  {animal.species} • {animal.age} anos
-                </p>
-                <span className="text-[#419DB0] font-medium text-sm">
-                  Ver detalhes →
-                </span>
-              </div>
+              <h2 className="text-base font-bold text-gray-800 truncate">{animal.name}</h2>
+              <p className="text-gray-500 text-sm mt-1">{animal.species} • {animal.age} anos</p>
+              <span className="mt-3 inline-block text-[#419DB0] text-sm font-semibold group-hover:underline">
+                Ver detalhes →
+              </span>
             </div>
           </Link>
         ))}
